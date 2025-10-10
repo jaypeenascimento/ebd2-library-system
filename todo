@@ -1,0 +1,15 @@
+
+1. Carregar categorias na ABB.
+  - CSVReader.load_categories() -> []Category
+  - Enum.each
+    - (abb) categories.insert
+
+2. Listar categorias
+  - not(abb lodaded?)
+    - return
+
+  - categories.traversal 
+      - Print every value
+
+3. Selectionar categoria e carregar livros na heap.
+  - CSVReader.load_books(category) -> []Books

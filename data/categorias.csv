@@ -2,3 +2,8 @@ id;nome_categoria;arquivo_livros
 1;Romance;romance.csv
 2;Tecnologia;tecnologia.csv
 3;História;historia.csv
+4;Psicologia;psicologia.csv
+5;Fantasia;fantasia.csv
+6;Aventura;aventura.csv
+7;Terror;terror.csv
+8;Biografia;biografia.csv

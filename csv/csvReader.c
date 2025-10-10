@@ -5,6 +5,8 @@
 #include <string.h>
 #include <sys/types.h>
 
+//implementação do leitor CSV
+
 struct CSVReader {
     FILE *fp;
     char *line;

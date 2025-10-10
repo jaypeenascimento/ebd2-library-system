@@ -15,10 +15,12 @@ void printCabecalho(){
 void chooseOption(int option){
     switch(option){
         case 1:
-            load_categories();
+            abb_load_categories();
+            printf("Categorias carregadas com sucesso!\n");
             break;
         case 2:
-            list_categories();
+            printf("Categorias disponíveis:\n");
+            abb_list_categories();
             break;
         case 3:
             select_category();

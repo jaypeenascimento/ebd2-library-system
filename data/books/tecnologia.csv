@@ -1,0 +1,4 @@
+isbn;titulo;autor;ano;preco;estoque;vendas
+924;Código Limpo;Robert C. Martin;2008;79.90;10;85
+718;O Programador Pragmático;Andrew Hunt e David Thomas;1999;89.90;8;60
+413;Introdução a Algoritmos;Thomas H. Cormen;2009;199.90;5;40

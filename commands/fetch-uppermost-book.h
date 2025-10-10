@@ -1,4 +1,0 @@
-#ifndef FETCH_UPPERMOST_BOOK_H
-#define FETCH_UPPERMOST_BOOK_H
-
-#endif

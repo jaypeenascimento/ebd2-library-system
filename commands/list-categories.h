@@ -1,4 +1,0 @@
-#ifndef LIST_CATEGORIES_H
-#define LIST_CATEGORIES_H
-
-#endif

@@ -1,4 +1,4 @@
-#ifndef CSV_H
-#define CSV_H
+#ifndef CSVREADER_H
+#define CSVREADER_H
 
 #endif

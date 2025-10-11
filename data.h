@@ -27,4 +27,6 @@ void printCategory(Category *a);
 Book *CreateBook(int isbn, char *titulo, char *autor, int ano, int preco,
                  int estoque, int vendas);
 
+void printBook(Book *b);
+
 #endif

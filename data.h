@@ -13,10 +13,10 @@ typedef struct {
   int isbn;
   char *titulo;
   char *autor;
-  char *ano;
-  char *preco;
-  char *estoque;
-  char *vendas;
+  int ano;
+  int preco;
+  int estoque;
+  int vendas;
 } Book;
 
 Category *CreateCategory(int id, char *name, char *filepath);

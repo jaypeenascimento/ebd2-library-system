@@ -2,6 +2,7 @@
 #define HEAP_H
 
 #include "../data.h"
+#include <stddef.h>
 
 typedef struct Heap {
   int index;
@@ -21,5 +22,6 @@ void heap_delete(Heap *root, Heap *node);
 void heap_destroy();
 
 Heap **heap_traversal_sequence(Heap **root);
+Book **heap_get_top_books(Heap **root, int n, size_t *foundCount);
 
 #endif

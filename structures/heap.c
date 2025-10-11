@@ -1,6 +1,7 @@
 #include "heap.h"
 
 #include <stdbool.h>
+#include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -186,24 +187,26 @@ Heap **heap_traversal_sequence(Heap **root) {
   return queue;
 }
 
-Book **heap_get_top_books(Heap **root, int n, size_t *out) {
+Book **heap_get_top_books(Heap **root, int n, size_t *foundCount) {
   Heap **nodes = heap_traversal_sequence(root);
-  Book **Books = malloc(sizeof(Book *) * n);
-  if (Books == NULL) {
+  Book **books = malloc(sizeof(Book *) * n);
+  if (books == NULL) {
     printf("Couldn't get top books: Failed malloc for Books buffer");
     return NULL;
   }
 
   // Iterating
-  for (int i = 0; i >= n; i++) {
-    Heap curr = nodes[i];
+  for (int i = 0; i < n; i++) {
+    Heap *curr = nodes[i];
     if (curr == NULL) {
       // Finished list.
       break;
     }
 
-    // Found a item
+    books[i] = curr->book;
+    *foundCount = *foundCount + 1;
   }
 
   free(nodes);
+  return books;
 }

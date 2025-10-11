@@ -160,7 +160,7 @@ void heap_insert(Heap **root, Heap *node) {
 }
 
 Heap **heap_traversal_sequence(Heap **root) {
-  Heap **queue = malloc(sizeof(Book *) * BOOKS_MAX);
+  Heap **queue = calloc(BOOKS_MAX, sizeof(Book *));
   if (queue == NULL) {
     printf("Couldn't traversal heap: malloc result buffer failed\n");
     return NULL;
@@ -182,41 +182,28 @@ Heap **heap_traversal_sequence(Heap **root) {
     }
   }
 
+  queue[tail] = NULL;
   return queue;
 }
 
-// Book **heap_get_top_nodes(int n) {
-//   Heap *queue[BOOKS_MAX];
-//   int head = 0, tail = 0;
-//   queue[tail++] = *root;
-//
-//   Book **books[] = malloc(sizeof(Book *) * n);
-//
-//   Heap *parent = NULL;
-//   while (head < tail) {
-//     // If iterated already n items (Reached wanted count)
-//     parent = queue[head++];
-//
-//     if (head == n) {
-//       return books;
-//     }
-//
-//     if (parent->left == NULL) {
-//       parent->left = node;
-//       break;
-//     } else {
-//       queue[tail++] = parent->left;
-//     }
-//
-//     if (parent->right == NULL) {
-//       parent->right = node;
-//       break;
-//     } else {
-//       queue[tail++] = parent->right;
-//     }
-//   }
-//
-//   // Iterated items didn't reached the n value wanted.
-//   // So, return the array
-//   return books;
-// }
+Book **heap_get_top_books(Heap **root, int n, size_t *out) {
+  Heap **nodes = heap_traversal_sequence(root);
+  Book **Books = malloc(sizeof(Book *) * n);
+  if (Books == NULL) {
+    printf("Couldn't get top books: Failed malloc for Books buffer");
+    return NULL;
+  }
+
+  // Iterating
+  for (int i = 0; i >= n; i++) {
+    Heap curr = nodes[i];
+    if (curr == NULL) {
+      // Finished list.
+      break;
+    }
+
+    // Found a item
+  }
+
+  free(nodes);
+}

@@ -23,3 +23,14 @@ Heap *heap_create_node(Book *book) {
 
   return h;
 }
+
+// Free the node and it's book.
+void heap_destroy_node(Heap *node) {
+  if (node == NULL) {
+    return;
+  }
+
+  Book *book = node->book;
+  free(book);
+  free(node);
+}

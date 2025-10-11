@@ -13,7 +13,7 @@ typedef struct Heap {
 
 // Node
 Heap *heap_create_node(Book *book);
-void heap_destroy_node();
+void heap_destroy_node(Heap *node);
 
 // Heap
 void heap_insert(Heap *root, Heap *node);

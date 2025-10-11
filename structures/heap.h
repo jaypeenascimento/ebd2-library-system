@@ -20,4 +20,6 @@ void heap_insert(Heap **root, Heap *node);
 void heap_delete(Heap *root, Heap *node);
 void heap_destroy();
 
+Heap **heap_traversal_sequence(Heap **root);
+
 #endif

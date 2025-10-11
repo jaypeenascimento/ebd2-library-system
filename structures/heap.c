@@ -67,7 +67,7 @@ Heap *find_parent(Heap *root, Heap *node) {
     return NULL;
   }
 
-  Heap *queue[1024];
+  Heap *queue[BOOKS_MAX];
   int head = 0, tail = 0;
   queue[tail++] = root;
 
@@ -122,6 +122,7 @@ void heapify_up(Heap *root, Heap *node) {
     heapify_up(root, parent);
   }
 }
+
 void heap_insert(Heap **root, Heap *node) {
   if (node == NULL)
     return;
@@ -132,7 +133,7 @@ void heap_insert(Heap **root, Heap *node) {
   }
 
   // Start the recursive process to find the structural insertion point.
-  Heap *queue[1024];
+  Heap *queue[BOOKS_MAX];
   int head = 0, tail = 0;
   queue[tail++] = *root;
 
@@ -157,3 +158,65 @@ void heap_insert(Heap **root, Heap *node) {
 
   heapify_up(*root, node);
 }
+
+Heap **heap_traversal_sequence(Heap **root) {
+  Heap **queue = malloc(sizeof(Book *) * BOOKS_MAX);
+  if (queue == NULL) {
+    printf("Couldn't traversal heap: malloc result buffer failed\n");
+    return NULL;
+  }
+  int head = 0, tail = 1;
+
+  queue[0] = *root;
+
+  Heap *curr = NULL;
+  while (head < tail) {
+    curr = queue[head++];
+
+    if (curr->left != NULL) {
+      queue[tail++] = curr->left;
+    }
+
+    if (curr->right != NULL) {
+      queue[tail++] = curr->right;
+    }
+  }
+
+  return queue;
+}
+
+// Book **heap_get_top_nodes(int n) {
+//   Heap *queue[BOOKS_MAX];
+//   int head = 0, tail = 0;
+//   queue[tail++] = *root;
+//
+//   Book **books[] = malloc(sizeof(Book *) * n);
+//
+//   Heap *parent = NULL;
+//   while (head < tail) {
+//     // If iterated already n items (Reached wanted count)
+//     parent = queue[head++];
+//
+//     if (head == n) {
+//       return books;
+//     }
+//
+//     if (parent->left == NULL) {
+//       parent->left = node;
+//       break;
+//     } else {
+//       queue[tail++] = parent->left;
+//     }
+//
+//     if (parent->right == NULL) {
+//       parent->right = node;
+//       break;
+//     } else {
+//       queue[tail++] = parent->right;
+//     }
+//   }
+//
+//   // Iterated items didn't reached the n value wanted.
+//   // So, return the array
+//   return books;
+// }

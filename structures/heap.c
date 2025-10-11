@@ -210,3 +210,35 @@ Book **heap_get_top_books(Heap **root, int n, size_t *foundCount) {
   free(nodes);
   return books;
 }
+
+Heap *heap_find_node_by_isbn(Heap **root, int isbn) {
+  if (root == NULL) {
+    printf("Couldn't find node by isbn: Root is NULL");
+  }
+
+  Heap *queue[BOOKS_MAX];
+  int head = 0, tail = 1;
+
+  queue[0] = *root;
+
+  Heap *curr = NULL;
+  while (head < tail) {
+    curr = queue[head++];
+
+    // Check if current's node book's matches the ispb.
+    if (curr->book->isbn == isbn) {
+      return curr;
+    }
+
+    if (curr->left != NULL) {
+      queue[tail++] = curr->left;
+    }
+
+    if (curr->right != NULL) {
+      queue[tail++] = curr->right;
+    }
+  }
+
+  // Couldn't find book with ISBN
+  return NULL;
+};

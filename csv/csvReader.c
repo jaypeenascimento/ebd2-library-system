@@ -258,4 +258,55 @@ Category **ReadCategories() {
   return categories;
 };
 
-// Book *readBooksFromCategory();
+Book **ReadBooksFromCategory(char *filename) {
+  if (filename == NULL) {
+    printf("Failed to read books from category: Path provided is NULL");
+  }
+
+  char path[128] = "";
+  sprintf(path, "./data/books/%s", filename);
+
+  CSVReader *reader = csv_open(path);
+  if (reader == NULL) {
+    printf("\nReader is NULL!\n");
+  }
+
+  Book **books = malloc(sizeof(Book) * BOOKS_MAX);
+  if (books == NULL) {
+    return NULL;
+  }
+
+  int count = 0;
+  while (1) {
+    // Read csv row.
+    size_t out = 0;
+    char **results = csv_read_row(reader, &out);
+    if (out == 0) {
+      printf("Reading CSV loop: Didn't read any data! Reached the end!");
+      break;
+    } else {
+      printf("Read");
+    }
+
+    // Create Book
+    int isbn = atoi(results[0]);
+    char *titulo = results[1];
+    char *autor = results[2];
+    int ano = atoi(results[3]);
+    int preco = atoi(results[4]);
+    int estoque = atoi(results[5]);
+    int vendas = atoi(results[6]);
+
+    Book *book = CreateBook(isbn, titulo, autor, ano, preco, estoque, vendas);
+
+    // Add books to array of books
+    books[count] = book;
+    count++;
+
+    // DEBUG:
+    // printBook(book);
+  }
+
+  csv_close(reader);
+  return books;
+};

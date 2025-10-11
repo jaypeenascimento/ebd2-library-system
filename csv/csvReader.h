@@ -26,6 +26,6 @@ char **csv_load_first_column(
 
 Category **ReadCategories();
 
-Book *readBooksFromCategory();
+Book **ReadBooksFromCategory(char *filename);
 
 #endif

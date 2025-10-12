@@ -1,5 +1,11 @@
+#include "repl.h"
+#include "../structures/heap.h"
+#include "commands/commands.h"
+
 #include <stdio.h>
 #include <stdlib.h>
+
+static Heap *heap = NULL;
 
 void printHeader() {
   printf("\n");
@@ -21,6 +27,10 @@ void process(int option) {
   case 2:
     break;
   case 3:
+    // TODO: Printar lista de categorias atual
+    // TODO: Passar arquivo da categoria para a funcao abaixo:
+    load_books(heap, "romance.csv");
+    printf("Livros da categoria foram carregados!");
     break;
   case 4:
     break;

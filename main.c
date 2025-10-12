@@ -1,3 +1,4 @@
+#include "./csv/csvReader.h"
 #include "./repl/repl.h"
 #include <stdio.h>
 
@@ -88,10 +89,6 @@ void testingHeap() {
 
 int main() {
   printf("Bem vido ao sistema da biblioteca!\n");
-
-  testingHeap();
-  return 0;
-
   REPL();
   return 0;
 }

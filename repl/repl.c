@@ -5,8 +5,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static Heap *heap = NULL;
-
 void printHeader() {
   printf("\n");
 
@@ -20,7 +18,7 @@ void printHeader() {
   printf("[0] Sair\n");
 }
 
-void process(int option) {
+void process(Heap **heap, int option) {
   switch (option) {
   case 1:
     break;
@@ -33,6 +31,10 @@ void process(int option) {
     printf("Livros da categoria foram carregados!");
     break;
   case 4:
+    Book *b = top_1_book(heap);
+
+    printf("Book found by top_1_book: \n\n");
+    printBook(b);
     break;
   case 5:
     // int n;
@@ -60,9 +62,11 @@ int read() {
 }
 
 void REPL() {
+  Heap *heap = NULL;
+
   while (1) {
     printHeader();
     int input = read();
-    process(input);
+    process(&heap, input);
   }
 }

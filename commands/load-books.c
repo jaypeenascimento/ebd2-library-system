@@ -17,7 +17,7 @@ Book **read_books(char *path) {
   return books;
 }
 
-void load_books(Heap *heap, char *filename) {
+void load_books(Heap **heap, char *filename) {
   Book **books = read_books(filename);
   if (!books)
     return;
@@ -26,7 +26,7 @@ void load_books(Heap *heap, char *filename) {
     Book *curr = books[i];
 
     Heap *node = heap_create_node(curr);
-    heap_insert(&heap, node);
+    heap_insert(heap, node);
 
     printBook(curr);
   }

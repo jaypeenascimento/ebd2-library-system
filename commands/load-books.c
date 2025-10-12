@@ -1,8 +1,9 @@
-#include "../structures/heap.h"
-#include "commands/commands.h"
+#include "commands.h"
 
-#include "./csv/csvReader.h"
 #include <stdio.h>
+
+#include "../csv/csvReader.h"
+#include "../structures/heap.h"
 
 Book **read_books(char *path) {
   Book **books = ReadBooksFromCategory(path);

@@ -1,6 +1,6 @@
 #include "repl.h"
+#include "../commands/commands.h"
 #include "../structures/heap.h"
-#include "commands/commands.h"
 
 #include <stdio.h>
 #include <stdlib.h>

@@ -2,9 +2,12 @@
 
 #include "../data.h"
 #include "../structures/heap.h"
+#include <stdio.h>
 
 Book *top_1_book(Heap **heap) {
-  if (heap == NULL) {
+  if (heap == NULL || *heap == NULL) {
+    // Debugging:
+    printf("Nao foi possivel buscar o top 1 livro: Heap esta vazia!\n");
     return NULL;
   }
 

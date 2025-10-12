@@ -28,6 +28,7 @@ void load_books(Heap **heap, char *filename) {
     Heap *node = heap_create_node(curr);
     heap_insert(heap, node);
 
-    printBook(curr);
+    // Debuging:
+    // printBook(curr);
   }
 }

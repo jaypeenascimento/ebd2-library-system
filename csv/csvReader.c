@@ -282,7 +282,8 @@ Book **ReadBooksFromCategory(char *filename) {
     size_t out = 0;
     char **results = csv_read_row(reader, &out);
     if (out == 0) {
-      printf("Reading CSV loop: Didn't read any data! Reached the end!");
+      // Debugging:
+      // printf("Reading CSV loop: Didn't read any data! Reached the end!");
       break;
     }
 

@@ -27,13 +27,21 @@ void process(Heap **heap, int option) {
   case 3:
     // TODO: Printar lista de categorias atual
     // TODO: Passar arquivo da categoria para a funcao abaixo:
-    load_books(heap, "romance.csv");
-    printf("Livros da categoria foram carregados!");
+
+    char *filename = "romance.csv";
+
+    load_books(heap, filename);
+    printf("\nLivros da categoria \"%s\" foram carregados!\n", filename);
     break;
   case 4:
     Book *b = top_1_book(heap);
+    if (b == NULL) {
+      printf(
+          "Nenhuma categoria foi selecionada ou não há livros na categoria.");
+      break;
+    }
 
-    printf("Book found by top_1_book: \n\n");
+    printf("\nTop 1 livro mais vendido da categoria:\n");
     printBook(b);
     break;
   case 5:

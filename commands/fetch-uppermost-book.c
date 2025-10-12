@@ -7,7 +7,7 @@
 Book *top_1_book(Heap **heap) {
   if (heap == NULL || *heap == NULL) {
     // Debugging:
-    printf("Nao foi possivel buscar o top 1 livro: Heap esta vazia!\n");
+    // printf("Nao foi possivel buscar o top 1 livro: Heap esta vazia!\n");
     return NULL;
   }
 

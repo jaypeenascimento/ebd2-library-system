@@ -45,12 +45,20 @@ void process(Heap **heap, int option) {
     printBook(b);
     break;
   case 5:
-    // int n;
-    //
-    // printf("Digite o valor de N: ");
-    // scanf("%d", &n);
-    //
+    int n = 0;
+    printf("Digite quantos livros devem ser listados: ");
+    scanf("%d", &n);
 
+    size_t out = 0;
+    Book **topBooks = top_n_books(heap, n, &out);
+    if (topBooks == NULL) {
+      break;
+    }
+
+    printf("\nTop %d livro mais vendido da categoria:\n", n);
+    for (int i = 0; (size_t)i < out; i++) {
+      printBook(topBooks[i]);
+    }
     break;
   case 6:
     break;

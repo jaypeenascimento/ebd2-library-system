@@ -13,7 +13,9 @@ void load_books(Heap **heap,
 
 Book *top_1_book(Heap **heap); // função para mostrar o top 1 livro mais vendido
 
-void top_n_books(int n); // função para mostrar o top N livros mais vendidos
+Book **top_n_books(
+    Heap **heap, int n,
+    size_t *foundCount); // função para mostrar o top N livros mais vendidos
 
 void register_sale(); // função para registrar uma venda
 

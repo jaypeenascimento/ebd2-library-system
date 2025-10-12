@@ -284,8 +284,6 @@ Book **ReadBooksFromCategory(char *filename) {
     if (out == 0) {
       printf("Reading CSV loop: Didn't read any data! Reached the end!");
       break;
-    } else {
-      printf("Read");
     }
 
     // Create Book

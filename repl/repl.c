@@ -35,8 +35,11 @@ void chooseOption(){
                 abb_list_categories(root);
                 break;
              case 3:
-                //select_category();
-                break;
+                printf("Digite o nome da categoria desejada: ");
+                char category[100];
+                scanf("%s", category);
+
+                char *filename = abb_return_file(root, category);
             case 4:
                 //top_1_book();
                 break;

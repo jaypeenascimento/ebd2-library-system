@@ -3,6 +3,6 @@
 
 void printCabecalho();
 
-void chooseOption(int option);
+void chooseOption();
 
 #endif

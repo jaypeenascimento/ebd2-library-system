@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../structures/abb.h"
+#include "repl.h"
 
 void printCabecalho(){
     printf("\nEscolha uma das opções abaixo:\n");
@@ -19,8 +20,9 @@ void chooseOption(){
 
     while(1){
         printCabecalho();
-        printf("Digite a opção desejada: ");
+        printf("\nDigite a opção desejada: ");
         scanf("%d", &option);
+        printf("\n");
 
         switch(option){
             case 1:
@@ -33,24 +35,25 @@ void chooseOption(){
                 abb_list_categories(root);
                 break;
              case 3:
-                select_category();
+                //select_category();
                 break;
             case 4:
-                top_1_book();
+                //top_1_book();
                 break;
             case 5:
-                int n;
+               /* int n;
             
                 printf("Digite o valor de N: ");
                 scanf("%d", &n);
             
-                top_n_books(n);
+                top_n_books(n);*/
 
                 break;
             case 6:
-                register_sale();
+                //register_sale();
                 break;
             case 0:
+                abb_destroy(root);
                 printf("Saindo...\n");
                 return;
             default:

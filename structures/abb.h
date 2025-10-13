@@ -14,10 +14,10 @@ static void node_destroy(ABB *n); //libera a memória alocada para um nó da ABB
 
 void abb_destroy(ABB *t); //libera a memória alocada para a abb
 
-static int abb_insert(ABB **root, const char *name); //insere uma nova categoria na abb
+int abb_insert(ABB **root, const char *name); //insere uma nova categoria na abb
 
 int abb_load_categories(ABB **t, const char *path); //carrega categorias de um arquivo CSV para a abb
 
-static void abb_list_categories(ABB *t); //lista todas as categorias presentes na abb em ordem alfabética
+void abb_list_categories(ABB *t); //lista todas as categorias presentes na abb em ordem alfabética
 
 #endif /* ABB_H */

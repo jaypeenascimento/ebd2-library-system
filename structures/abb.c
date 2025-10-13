@@ -32,7 +32,7 @@ void abb_destroy(ABB *t) {
     node_destroy(t);
 }
 
-static int abb_insert(ABB **root, const char *name) {
+int abb_insert(ABB **root, const char *name) {
     if (!root || !name) return -1;
     if (!*root) {
         *root = node_create(name);
@@ -78,8 +78,11 @@ int abb_load_categories(ABB **t, const char *path) {
     return inserted;
 }
 
-static void abb_list_categories(ABB *n) {
-    if (!n) return;
+void abb_list_categories(ABB *n) {
+    if (!n){ 
+        printf("Nenhuma categoria disponível.\n");
+        return;
+    }
     abb_list_categories(n->left);
     printf("%s\n", n->category);
     abb_list_categories(n->right);

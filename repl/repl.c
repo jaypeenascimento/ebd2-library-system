@@ -39,11 +39,26 @@ void chooseOption(){
                 }
                 break;
              case 3:
+                if (abb_is_empty(root)) {
+                    printf("Nenhuma categoria disponível. Carregue as categorias primeiro.\n");
+                    break;
+                }
                 printf("Digite o nome da categoria desejada: ");
                 char category[100];
                 scanf("%s", category);
 
+                if (!category || category[0] == '\0') {
+                    printf("Nome de categoria inválido.\n");
+                    break;
+                }
+
                 char *filename = abb_return_file(root, category);
+                if (!filename) {
+                    printf("Categoria não encontrada.\n");
+                    break;
+                }
+                free(filename);
+                break;
             case 4:
                 //top_1_book();
                 break;

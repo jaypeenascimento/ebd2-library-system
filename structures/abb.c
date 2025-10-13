@@ -12,7 +12,7 @@ struct ABB {
     struct ABB *right;
 };
 
-static ABB *node_create(const char *cat, const char *filename) {
+ABB *node_create(const char *cat, const char *filename) {
     ABB *n = malloc(sizeof(*n));
     if (!n) return NULL;
     n->category = strdup(cat ? cat : "");
@@ -22,7 +22,7 @@ static ABB *node_create(const char *cat, const char *filename) {
     return n;
 }
 
-static void node_destroy(ABB *node) {
+void node_destroy(ABB *node) {
     if (!node) return;
     node_destroy(node->left);
     node_destroy(node->right);

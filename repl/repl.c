@@ -32,7 +32,11 @@ void chooseOption(){
                 break;
             case 2:
                 printf("Categorias disponíveis:\n");
-                abb_list_categories(root);
+                if (abb_is_empty(root)) {
+                    printf("Nenhuma categoria disponível.\n");
+                } else {
+                    abb_list_categories(root);
+                }
                 break;
              case 3:
                 printf("Digite o nome da categoria desejada: ");

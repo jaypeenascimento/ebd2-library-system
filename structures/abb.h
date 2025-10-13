@@ -20,6 +20,8 @@ int abb_load_categories(ABB **root, const char *path); //carrega categorias de u
 
 void abb_list_categories(ABB *root); //lista todas as categorias presentes na abb em ordem alfabética
 
+int abb_is_empty(const ABB *root); //retorna 1 se a abb estiver vazia (root == NULL), 0 caso contrário
+
 char *abb_return_file (ABB *root, const char *name);
 
 #endif /* ABB_H */

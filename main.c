@@ -3,12 +3,8 @@
 
 int main() {
     printf("Bem vido ao sistema da biblioteca!\n");
-    printCabecalho();
-
-    int option;
-
-    scanf("%d", &option);
-    chooseOption(option);
+    
+    chooseOption();
 
     return 0;
 }

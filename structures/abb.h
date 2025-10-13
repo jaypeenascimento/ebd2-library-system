@@ -20,4 +20,6 @@ int abb_load_categories(ABB **t, const char *path); //carrega categorias de um a
 
 void abb_list_categories(ABB *t); //lista todas as categorias presentes na abb em ordem alfabética
 
+char *abb_return_file (ABB *t, const char *name);
+
 #endif /* ABB_H */

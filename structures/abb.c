@@ -113,14 +113,19 @@ int abb_load_categories(ABB **root, const char *path) {
 }
 
 void abb_list_categories(ABB *node) {
-  if (!node) {
-    printf("Nenhuma categoria disponível.\n");
-    return;
-  }
-  abb_list_categories(node->left);
-  printf("%s\n", node->category);
-  abb_list_categories(node->right);
+    if (!node) {
+        return;
+    }
+    abb_list_categories(node->left);
+    printf("%s\n", node->category);
+    abb_list_categories(node->right);
 }
+
+int abb_is_empty(const ABB *root) {
+    return root == NULL ? 1 : 0;
+}
+
+
 
 char *abb_return_file(ABB *node, const char *name) {
   if (!node || !name)

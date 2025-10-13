@@ -8,10 +8,9 @@ typedef struct ABB ABB;
 
 // Protótipos das funções da ABB
 
-static ABB *node_create(const char *cat,
-                        const char *filename); // cria um novo nó da ABB
+ABB *node_create(const char *cat, const char *filename); //cria um novo nó da ABB
 
-static void node_destroy(ABB *n); // libera a memória alocada para um nó da ABB
+void node_destroy(ABB *n); //libera a memória alocada para um nó da ABB
 
 void abb_destroy(ABB *root); // libera a memória alocada para a abb
 

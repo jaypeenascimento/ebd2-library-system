@@ -276,6 +276,10 @@ Book **ReadBooksFromCategory(char *filename) {
     return NULL;
   }
 
+  // Discard first CSV line
+  size_t tout = 0;
+  csv_read_row(reader, &tout);
+
   int count = 0;
   while (1) {
     // Read csv row.
@@ -299,12 +303,14 @@ Book **ReadBooksFromCategory(char *filename) {
     Book *book = CreateBook(isbn, titulo, autor, ano, preco, estoque, vendas);
 
     // Add books to array of books
+    // Ignore first row since it's not a book data.
     books[count] = book;
     count++;
 
     // DEBUG:
     // printBook(book);
   }
+  books[count + 1] = NULL;
 
   csv_close(reader);
   return books;

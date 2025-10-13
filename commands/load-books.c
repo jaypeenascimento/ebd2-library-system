@@ -22,7 +22,8 @@ void load_books(Heap **heap, char *filename) {
   if (!books)
     return;
 
-  for (int i = 0; books[i] != NULL; i++) {
+  for (int i = 0; books[i + 1] != NULL; i++) {
+    printf("I: %d", i);
     Book *curr = books[i];
 
     Heap *node = heap_create_node(curr);

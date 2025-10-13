@@ -1,5 +1,6 @@
 #include "repl.h"
 #include "../commands/commands.h"
+#include "../structures/abb.h"
 #include "../structures/heap.h"
 
 #include <stdio.h>
@@ -18,58 +19,6 @@ void printHeader() {
   printf("[0] Sair\n");
 }
 
-void process(Heap **heap, int option) {
-  switch (option) {
-  case 1:
-    break;
-  case 2:
-    break;
-  case 3:
-    // TODO: Printar lista de categorias atual
-    // TODO: Passar arquivo da categoria para a funcao abaixo:
-
-    char *filename = "romance.csv";
-
-    load_books(heap, filename);
-    printf("\nLivros da categoria \"%s\" foram carregados!\n", filename);
-    break;
-  case 4:
-    Book *b = top_1_book(heap);
-    if (b == NULL) {
-      printf(
-          "Nenhuma categoria foi selecionada ou não há livros na categoria.");
-      break;
-    }
-
-    printf("\nTop 1 livro mais vendido da categoria:\n");
-    printBook(b);
-    break;
-  case 5:
-    int n = 0;
-    printf("Digite quantos livros devem ser listados: ");
-    scanf("%d", &n);
-
-    size_t out = 0;
-    Book **topBooks = top_n_books(heap, n, &out);
-    if (topBooks == NULL) {
-      break;
-    }
-
-    printf("\nTop %d livro mais vendido da categoria:\n", n);
-    for (int i = 0; (size_t)i < out; i++) {
-      printBook(topBooks[i]);
-    }
-    break;
-  case 6:
-    break;
-  case 0:
-    printf("Saindo...\n");
-    exit(0);
-  default:
-    printf("Opção inválida. Tente novamente.\n");
-  }
-}
-
 int read() {
   int n = 0;
   scanf("%d", &n);
@@ -78,11 +27,66 @@ int read() {
 }
 
 void REPL() {
+  static ABB *root = NULL;
   Heap *heap = NULL;
 
   while (1) {
     printHeader();
     int input = read();
-    process(&heap, input);
+
+    switch (input) {
+    case 1:
+      abb_load_categories(&root, "data/categorias.csv");
+      printf("Categorias carregadas com sucesso!\n");
+      break;
+    case 2:
+      printf("Categorias disponíveis:\n");
+      abb_list_categories(root);
+      break;
+    case 3:
+      printf("Digite o nome da categoria desejada: ");
+      char category[100];
+      scanf("%s", category);
+
+      char *filename = abb_return_file(root, category);
+
+      load_books(&heap, filename);
+      printf("\nLivros da categoria \"%s\" foram carregados!\n", filename);
+      break;
+    case 4:
+      Book *b = top_1_book(&heap);
+      if (b == NULL) {
+        printf(
+            "Nenhuma categoria foi selecionada ou não há livros na categoria.");
+        break;
+      }
+
+      printf("\nTop 1 livro mais vendido da categoria:\n");
+      printBook(b);
+      break;
+    case 5:
+      int n = 0;
+      printf("Digite quantos livros devem ser listados: ");
+      scanf("%d", &n);
+
+      size_t out = 0;
+      Book **topBooks = top_n_books(&heap, n, &out);
+      if (topBooks == NULL) {
+        break;
+      }
+
+      printf("\nTop %d livro mais vendido da categoria:\n", n);
+      for (int i = 0; (size_t)i < out; i++) {
+        printBook(topBooks[i]);
+      }
+      break;
+    case 6:
+      break;
+    case 0:
+      printf("Saindo...\n");
+      exit(0);
+    default:
+      printf("Opção inválida. Tente novamente.\n");
+    }
   }
 }

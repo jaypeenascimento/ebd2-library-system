@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../structures/abb.h"
+#include "../structures/heap.h"
 #include "repl.h"
 
-void printCabecalho(){
+void printHeader(){
     printf("\nEscolha uma das opções abaixo:\n");
     printf("\n[1] Carregar Categorias\n");
     printf("[2] Listar Categorias\n"); 
@@ -17,9 +18,10 @@ void printCabecalho(){
 void chooseOption(){
     int option;
     static ABB *root = NULL;
+    static Heap **heap = NULL;
 
     while(1){
-        printCabecalho();
+        printHeader();
         printf("\nDigite a opção desejada: ");
         scanf("%d", &option);
         printf("\n");
@@ -27,6 +29,7 @@ void chooseOption(){
         switch(option){
             case 1:
                 abb_load_categories(&root, "data/categorias.csv");
+                //heap load
                 printf("Categorias carregadas com sucesso!\n");
                 
                 break;
@@ -35,19 +38,38 @@ void chooseOption(){
                 abb_list_categories(root);
                 break;
              case 3:
-                //select_category();
+                 // TODO: Passar arquivo da categoria para a funcao abaixo:
+
+                char *filename = "romance.csv";
+
+                load_books(heap, filename);
+                printf("\nLivros da categoria \"%s\" foram carregados!\n", filename);
                 break;
             case 4:
-                //top_1_book();
+                Book *b = top_1_book(heap);
+                if (b == NULL) {
+                    printf(
+                        "Nenhuma categoria foi selecionada ou não há livros na categoria.");
+                    break;
+                }
+                printf("\nTop 1 livro mais vendido da categoria:\n");
+                printBook(b);
                 break;
             case 5:
-               /* int n;
-            
-                printf("Digite o valor de N: ");
+               int n = 0;
+                printf("Digite quantos livros devem ser listados: ");
                 scanf("%d", &n);
-            
-                top_n_books(n);*/
 
+                
+                size_t out = 0;
+                Book **topBooks = top_n_books(heap, n, &out);
+                if (topBooks == NULL) {
+                break;
+        }
+                printf("\nTop %d livro mais vendido da categoria:\n", n);
+                for (int i = 0; (size_t)i < out; i++) {
+                printBook(topBooks[i]);
+                }
                 break;
             case 6:
                 //register_sale();

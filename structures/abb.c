@@ -20,16 +20,16 @@ static ABB *node_create(const char *cat) {
     return n;
 }
 
-static void node_destroy(ABB *n) {
-    if (!n) return;
-    node_destroy(n->left);
-    node_destroy(n->right);
-    free(n->category);
-    free(n);
+static void node_destroy(ABB *node) {
+    if (!node) return;
+    node_destroy(node->left);
+    node_destroy(node->right);
+    free(node->category);
+    free(node);
 }
 
-void abb_destroy(ABB *t) {
-    node_destroy(t);
+void abb_destroy(ABB *root) {
+    node_destroy(root);
 }
 
 int abb_insert(ABB **root, const char *name) {
@@ -52,8 +52,8 @@ int abb_insert(ABB **root, const char *name) {
     }
 }
 
-int abb_load_categories(ABB **t, const char *path) {
-    if (!t || !path) return -1;
+int abb_load_categories(ABB **root, const char *path) {
+    if (!root || !path) return -1;
     CSVReader *r = csv_open(path);
     if (!r) return -1;
     size_t cols = 0;
@@ -69,7 +69,7 @@ int abb_load_categories(ABB **t, const char *path) {
             }
             const char *name = row[1];
             if (name && name[0] != '\0') {
-                if (abb_insert(t, name) == 0) inserted++;
+                if (abb_insert(root, name) == 0) inserted++;
             }
         }
         csv_free_fields(row, cols);
@@ -78,12 +78,12 @@ int abb_load_categories(ABB **t, const char *path) {
     return inserted;
 }
 
-void abb_list_categories(ABB *n) {
-    if (!n){ 
+void abb_list_categories(ABB *node) {
+    if (!node) {
         printf("Nenhuma categoria disponível.\n");
         return;
     }
-    abb_list_categories(n->left);
-    printf("%s\n", n->category);
-    abb_list_categories(n->right);
+    abb_list_categories(node->left);
+    printf("%s\n", node->category);
+    abb_list_categories(node->right);
 }

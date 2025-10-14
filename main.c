@@ -1,9 +1,8 @@
 #include "./repl/repl.h"
-#include <stdio.h>
+
+#include <stddef.h>
 
 int main() {
-  printf("Bem vido ao sistema da biblioteca!\n");
-
   REPL();
   return 0;
 }

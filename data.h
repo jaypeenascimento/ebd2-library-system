@@ -2,6 +2,7 @@
 #define DATA_H
 
 #define CATEGORY_MAX 64
+#define BOOKS_MAX 64
 
 typedef struct {
   int id;
@@ -22,5 +23,10 @@ typedef struct {
 Category *CreateCategory(int id, char *name, char *filepath);
 
 void printCategory(Category *a);
+
+Book *CreateBook(int isbn, char *titulo, char *autor, int ano, int preco,
+                 int estoque, int vendas);
+
+void printBook(Book *b);
 
 #endif

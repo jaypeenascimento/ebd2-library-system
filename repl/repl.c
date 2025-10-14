@@ -57,12 +57,11 @@ void REPL() {
 
       char *filename = abb_return_file(root, category);
 
+      heap = NULL;
       load_books(&heap, filename);
       printf("\nLivros da categoria \"%s\" foram carregados!\n", filename);
       break;
     case 4:
-      if (1 == 2) {
-      }
       Book *b = top_1_book(&heap);
       if (b == NULL) {
         printf(

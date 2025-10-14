@@ -6,7 +6,6 @@
 
 Book **top_n_books(Heap **heap, int n, size_t *foundCount) {
   if (heap == NULL || *heap == NULL) {
-    // Debugging:
     printf("Nao foi possivel buscar top %d livros: Heap esta vazia!\n", n);
     return NULL;
   }

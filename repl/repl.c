@@ -90,6 +90,16 @@ void REPL() {
       }
       break;
     case 6:
+      if (root == NULL) {
+        printf("Categorias esta vazia, nao e possivel buscar livros\n");
+        break;
+      }
+
+      if (heap == NULL) {
+        printf("Heap esta vazia, nao e possivel buscar livros\n");
+        break;
+      }
+
       printf("\nEscreva o ISBN do livro: ");
       int isbn = 0;
       scanf("%d", &isbn);

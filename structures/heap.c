@@ -160,35 +160,126 @@ void heap_insert(Heap **root, Heap *node) {
   heapify_up(*root, node);
 }
 
-Heap **heap_traversal_sequence(Heap **root) {
-  Heap **queue = calloc(BOOKS_MAX, sizeof(Book *));
-  if (queue == NULL) {
-    printf("Couldn't traversal heap: malloc result buffer failed\n");
+void heapify_down(Heap *node) {
+  if (node == NULL) {
+    return;
+  }
+
+  Heap *largest = node;
+  Heap *left = node->left;
+  Heap *right = node->right;
+
+  if (left != NULL && left->index > largest->index) {
+    largest = left;
+  }
+  if (right != NULL && right->index > largest->index) {
+    largest = right;
+  }
+
+  if (largest != node) {
+    swap_nodes_data(node, largest);
+    heapify_down(largest);
+  }
+}
+
+Heap *heap_extract_max_node(Heap **root) {
+  if (root == NULL || *root == NULL)
+    return NULL;
+
+  Heap *max_node = *root;
+
+  // 1 - Heap have one node
+  if (max_node->left == NULL && max_node->right == NULL) {
+    *root = NULL;
+    return max_node;
+  }
+
+  // 2 - Heap have multiple nodes
+  // Find the last node in the tree using a level-order traversal.
+  Heap *last_node = NULL;
+  Heap *queue[1024]; // Assuming a max size
+  int head = 0, tail = 0;
+  queue[tail++] = *root;
+  while (head < tail) {
+    last_node = queue[head++];
+    if (last_node->left)
+      queue[tail++] = last_node->left;
+    if (last_node->right)
+      queue[tail++] = last_node->right;
+  }
+
+  // Find the parent of the last node so we can detach it.
+  Heap *parent_of_last = find_parent(*root, last_node);
+
+  // Detach the last node from the tree.
+  if (parent_of_last->right == last_node) {
+    parent_of_last->right = NULL;
+  } else {
+    parent_of_last->left = NULL;
+  }
+
+  // Last node is now the new root
+  *root = last_node;
+  last_node->left = max_node->left;
+  last_node->right = max_node->right;
+
+  heapify_down(*root);
+
+  return max_node;
+}
+
+Heap *heap_deep_copy(Heap *original) {
+  if (original == NULL) {
     return NULL;
   }
-  int head = 0, tail = 1;
+  Heap *copy_node = malloc(sizeof(Heap));
+  if (copy_node == NULL)
+    return NULL;
 
-  queue[0] = *root;
+  copy_node->index = original->index;
+  copy_node->book = original->book;
+  copy_node->left = heap_deep_copy(original->left);
+  copy_node->right = heap_deep_copy(original->right);
 
-  Heap *curr = NULL;
-  while (head < tail) {
-    curr = queue[head++];
+  return copy_node;
+}
 
-    if (curr->left != NULL) {
-      queue[tail++] = curr->left;
-    }
+void heap_destroy_tree(Heap *node) {
+  if (node == NULL)
+    return;
+  heap_destroy_tree(node->left);
+  heap_destroy_tree(node->right);
+  free(node);
+}
 
-    if (curr->right != NULL) {
-      queue[tail++] = curr->right;
+Heap **heap_get_sorted_array(Heap *root) {
+  Heap *heap_copy = heap_deep_copy(root);
+  if (heap_copy == NULL) {
+    printf("Error: Failed to create a copy of the heap for sorting.\n");
+    return NULL;
+  }
+
+  size_t count = 0;
+  Heap **sorted_array = malloc(BOOKS_MAX * sizeof(Heap *));
+  if (sorted_array == NULL) {
+    printf("Error: Failed to allocate memory for sorted array.\n");
+    heap_destroy_tree(heap_copy);
+    return NULL;
+  }
+
+  while (heap_copy != NULL) {
+    Heap *max_node = heap_extract_max_node(&heap_copy);
+    if (max_node) {
+      sorted_array[count++] = max_node;
     }
   }
 
-  queue[tail] = NULL;
-  return queue;
+  sorted_array[count] = NULL;
+  return sorted_array;
 }
 
 Book **heap_get_top_books(Heap **root, int n, size_t *foundCount) {
-  Heap **nodes = heap_traversal_sequence(root);
+  Heap **nodes = heap_get_sorted_array(*root);
   Book **books = malloc(sizeof(Book *) * n);
   if (books == NULL) {
     printf("Couldn't get top books: Failed malloc for Books buffer");

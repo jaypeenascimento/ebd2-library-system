@@ -22,7 +22,7 @@ void heap_delete(Heap *root, Heap *node);
 void heap_destroy();
 void heapify_up(Heap *root, Heap *node);
 
-Heap **heap_traversal_sequence(Heap **root);
+Heap **heap_traversal_sequence(Heap *root);
 Book **heap_get_top_books(Heap **root, int n, size_t *foundCount);
 Heap *heap_find_node_by_isbn(Heap **root, int isbn);
 

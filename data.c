@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Helpers for debugging
 void printCategory(Category *a) {
   if (a == NULL) {
     printf("Category: \n");

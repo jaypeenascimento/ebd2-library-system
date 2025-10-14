@@ -110,13 +110,15 @@ void REPL() {
       // Add vendas to it's node index and book's value
       foundNode->index += vendas;
       foundNode->book->vendas += vendas;
+      foundNode->book->estoque -= vendas;
 
       heapify_up(heap, foundNode);
 
       break;
     case 0:
       printf("Saindo...\n");
-      exit(0);
+      abb_destroy(root);
+      return;
     default:
       printf("Opção inválida. Tente novamente.\n");
     }

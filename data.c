@@ -55,19 +55,13 @@ Book *CreateBook(int isbn, char *titulo, char *autor, int ano, int preco,
 
 void printBook(Book *b) {
   if (b == NULL) {
-    printf("Book: \n");
-    printf("NULL Book!\n");
+    printf("Tried to print a NULL book!\n");
     return;
   }
 
   printf("\n");
-  printf("Isbn: %d\n", b->isbn);
-  printf("Titulo: %s\n", b->titulo);
-  printf("Autor: %s\n", b->autor);
-  printf("Ano: %d\n", b->ano);
-  printf("Preco: %d\n", b->preco);
-  printf("Estoque: %d\n", b->estoque);
-  printf("Vendas: %d\n", b->vendas);
-
-  printf("\n");
+  printf("\"%s\" - %s, %d. (ISBN: %d)\n", b->titulo, b->autor, b->ano, b->isbn);
+  printf("R$ %d | ", b->preco);
+  printf("%d unidades restantes | ", b->estoque);
+  printf("%d unidades vendidas\n", b->vendas);
 }

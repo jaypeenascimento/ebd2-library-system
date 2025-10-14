@@ -1,6 +1,10 @@
 isbn;titulo;autor;ano;preco;estoque;vendas
-666;O Iluminado;Stephen King;1977;49.90;8;120
+664;O Iluminado;Stephen King;1977;49.90;8;120
 313;Drácula;Bram Stoker;1897;39.90;6;90
 999;It: A Coisa;Stephen King;1986;59.90;7;110
 212;Frankenstein;Mary Shelley;1818;34.90;4;50
 141;O Exorcista;William Peter Blatty;1971;44.90;5;70
+898;O Chamado de Cthulhu;H.P. Lovecraft;1928;29.90;10;80
+787;Psicose;Robert Bloch;1959;39.90;7;100
+656;O Silêncio dos Inocentes;Thomas Harris;1988;47.90;9;130
+323;A Assombração da Casa da Colina;Shirley Jackson;1959;36.90;8;95

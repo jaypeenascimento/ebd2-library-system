@@ -2,5 +2,7 @@ isbn;titulo;autor;ano;preco;estoque;vendas
 924;Código Limpo;Robert C. Martin;2008;79.90;10;85
 718;O Programador Pragmático;Andrew Hunt e David Thomas;1999;89.90;8;60
 413;Introdução a Algoritmos;Thomas H. Cormen;2009;199.90;5;40
-808;Estruturas de Dados e Algoritmos em C;Adam Drozdek;2013;129.90;3;20
+008;Estruturas de Dados e Algoritmos em C;Adam Drozdek;2013;129.90;3;20
 221;Design Patterns: Elements of Reusable Object-Oriented Software;Erich Gamma et al.;1994;99.90;6;45
+344;A Segunda Era da Máquina;Erik Brynjolfsson e Andrew McAfee;2014;49.90;7;55
+590;Superinteligência: Caminhos, Perigos, Estratégias;Nick Bostrom;2014;59.90;4;35

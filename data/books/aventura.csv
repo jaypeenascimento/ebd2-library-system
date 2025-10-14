@@ -4,3 +4,6 @@ isbn;titulo;autor;ano;preco;estoque;vendas
 911;A Volta ao Mundo em 80 Dias;Jules Verne;1873;34.90;9;75
 404;Robinson Crusoé;Daniel Defoe;1719;29.90;7;60
 636;As Aventuras de Huckleberry Finn;Mark Twain;1884;34.90;6;55
+157;As Viagens de Gulliver;Jonathan Swift;1726;24.90;8;70
+082;Moby Dick;Herman Melville;1851;32.90;12;90
+325;A Ilha Misteriosa;Jules Verne;1874;28.90;11;80

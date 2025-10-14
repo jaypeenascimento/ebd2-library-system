@@ -1,10 +1,9 @@
-#include "./csv/csvReader.h"
 #include "./repl/repl.h"
-#include <stdio.h>
 
 #include "./data.h"
 #include "./structures/heap.h"
 #include <stddef.h>
+#include <stdio.h>
 
 void testingHeap() {
   Book *book1 = CreateBook(123, "O lobo e a fera", "Pedro", 2015, 100, 2, 580);
@@ -88,7 +87,6 @@ void testingHeap() {
 }
 
 int main() {
-  printf("Bem vido ao sistema da biblioteca!\n");
   REPL();
   return 0;
 }

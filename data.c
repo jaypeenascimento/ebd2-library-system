@@ -61,8 +61,6 @@ void printBook(Book *b) {
   }
 
   printf("\n");
-
-  printf("Book: \n");
   printf("Isbn: %d\n", b->isbn);
   printf("Titulo: %s\n", b->titulo);
   printf("Autor: %s\n", b->autor);

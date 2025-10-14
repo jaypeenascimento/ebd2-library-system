@@ -26,4 +26,6 @@ Heap **heap_traversal_sequence(Heap *root);
 Book **heap_get_top_books(Heap **root, int n, size_t *foundCount);
 Heap *heap_find_node_by_isbn(Heap **root, int isbn);
 
+void heap_destroy_tree(Heap *node);
+
 #endif

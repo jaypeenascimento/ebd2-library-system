@@ -127,6 +127,7 @@ void REPL() {
     case 0:
       printf("Saindo...\n");
       abb_destroy(root);
+      heap_destroy_tree(heap);
       return;
     default:
       printf("Opção inválida. Tente novamente.\n");
